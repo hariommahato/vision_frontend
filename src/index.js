@@ -6,12 +6,13 @@ import store from "./strore";
 import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AlertTemplate from "react-alert-template-basic";
-const root = ReactDOM.createRoot(document.getElementById("root"));
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
 if (process.env.NODE_ENV === "production") {
   disableReactDevTools();
 }
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
 const options = {
   timeout: 5000,
   positions: positions.BOTTOM_CENTER,
