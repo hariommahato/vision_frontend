@@ -18,13 +18,13 @@ import {
   CATEGORY_DETAILS_SUCCESS,
   CLEAR_ERRORS_CATO
 } from "../constants/categoryConstants";
-// const url='https://multivendor-api.onrender.com'
+const url="https://mern-ecommerce-backend-xo0h.onrender.com"
 // Get All CAtegory
 export const getAllCategory = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_CATEGORY_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/category`);
+    const { data } = await axios.get(`${url}/api/v1/category`);
 
     dispatch({
       type: ALL_CATEGORY_SUCCESS,
@@ -47,7 +47,7 @@ export const createCategory = (categoryData) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
     const { data } = await axios.post(
-      `/api/v1/category/new`,
+      `${url}/api/v1/category/new`,
       categoryData,
       config
     );
@@ -74,7 +74,7 @@ export const updateCategory = (id, categoryData) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `/api/v1/category/${id}`,
+      `${url}/api/v1/category/${id}`,
       categoryData,
       config
     );
@@ -96,7 +96,7 @@ export const deleteCategory = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_CATEGORY_REQUEST });
 
-    const { data } = await axios.delete(`/api/v1/category/${id}`);
+    const { data } = await axios.delete(`${url}/api/v1/category/${id}`);
 
     dispatch({
       type: DELETE_CATEGORY_SUCCESS,
@@ -115,7 +115,7 @@ export const getCatgoryDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: CATEGORY_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/category/${id}`);
+    const { data } = await axios.get(`${url}/api/v1/category/${id}`);
 
     dispatch({
       type: CATEGORY_DETAILS_SUCCESS,
