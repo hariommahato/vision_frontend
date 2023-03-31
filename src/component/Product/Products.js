@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 import { useParams } from "react-router-dom";
 import { clearErrorsCato, getAllCategory } from "../../actions/categoryAction";
+import Dropdown from "react-bootstrap/Dropdown";
 const Products = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -48,14 +49,24 @@ const Products = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    if(categoryError){
-      alert.error(error)
-      dispatch(clearErrorsCato())
+    if (categoryError) {
+      alert.error(error);
+      dispatch(clearErrorsCato());
     }
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
     dispatch(getAllCategory());
-  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error,categoryError]);
+  }, [
+    dispatch,
+    keyword,
+    currentPage,
+    price,
+    category,
+    ratings,
+    alert,
+    error,
+    categoryError,
+  ]);
 
   return (
     <Fragment>
@@ -65,52 +76,63 @@ const Products = () => {
         <Fragment>
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           <h2 className="productsHeading">Products</h2>
-
-          <div className="products">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-          </div>
-
-          <div className="filterBox">
-            <Typography>Price</Typography>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={25000}
-            />
-
-            <Typography>Categories</Typography>
-            <ul className="categoryBox">
-              {categories?.map((category) => (
-                <li
-                  className="category-link"
-                  key={category.name}
-                  onClick={() => setCategory(category.name)}
+          <div style={{ display: "flex", width: "100%", gap: "5rem" }}>
+            <div className="productsPage">
+              {products &&
+                products.map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
+            </div>
+            <div className="filterBox">
+              <Dropdown>
+                <Dropdown.Toggle
+                  id="dropdown-basic"
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    border: "none",
+                    width: "15vmax",
+                  }}
                 >
-                  {category.name}
-                </li>
-              ))}
-            </ul>
+                  Categories
+                </Dropdown.Toggle>
 
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
+                <Dropdown.Menu>
+                  {categories?.map((category) => (
+                    <Dropdown.Item key={category.name} onClick={()=>{
+                      setCategory(category.name)
+                    }}>
+                      {category.name}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+              <Typography>Price</Typography>
               <Slider
-                value={ratings}
-                onChange={(e, newRating) => {
-                  setRatings(newRating);
-                }}
-                aria-labelledby="continuous-slider"
+                value={price}
+                onChange={priceHandler}
                 valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
                 min={0}
-                max={5}
+                max={25000}
               />
-            </fieldset>
+
+              <fieldset>
+                <Typography component="legend">Ratings Above</Typography>
+                <Slider
+                  value={ratings}
+                  onChange={(e, newRating) => {
+                    setRatings(newRating);
+                  }}
+                  aria-labelledby="continuous-slider"
+                  valueLabelDisplay="auto"
+                  min={0}
+                  max={5}
+                />
+              </fieldset>
+            </div>
           </div>
+
           {resultPerPage < count && (
             <div className="paginationBox">
               <Pagination

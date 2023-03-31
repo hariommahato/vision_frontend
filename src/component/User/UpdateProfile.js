@@ -4,26 +4,31 @@ import Loader from "../layout/Loader/Loader";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, updateProfile, loadUser } from "../../actions/userActions";
+import {
+  clearErrors,
+  updateProfile,
+  loadUser,
+} from "../../actions/userActions";
 import { useAlert } from "react-alert";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 import MetaData from "../layout/MetaData";
 import { useNavigate } from "react-router-dom";
-import {BsTelephone} from 'react-icons/bs'
+import { BsTelephone } from "react-icons/bs";
 
-const UpdateProfile = ( ) => {
+const UpdateProfile = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.user);
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone,setPhone]=useState()
+  const [address, setAddress] = useState("");
+  const [shopname, setShopName] = useState("");
+  const [phone, setPhone] = useState();
   const [avatar, setAvatar] = useState([]);
-
   const [avatarPreview, setAvatarPreview] = useState("/logo192.png");
 
   const updateProfileSubmit = (e) => {
@@ -32,7 +37,9 @@ const UpdateProfile = ( ) => {
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("avatar", avatar);
-    myForm.set("phone",phone)
+    myForm.set("phone", phone);
+    myForm.set("address", address);
+    myForm.set("shopname", shopname);
     dispatch(updateProfile(myForm));
   };
 
@@ -43,7 +50,6 @@ const UpdateProfile = ( ) => {
       if (reader.readyState === 2) {
         setAvatarPreview(reader.result);
         setAvatar(reader.result);
-      
       }
     };
 
@@ -54,11 +60,12 @@ const UpdateProfile = ( ) => {
     if (user) {
       setName(user.name);
       setEmail(user.email);
-      setPhone(user.phone)
-     
+      setPhone(user.phone);
+      setAddress(user.address);
+      setShopName(user.shopname);
+
       setAvatarPreview(user.avatar?.url);
     }
-   
 
     if (error) {
       alert.error(error);
@@ -76,8 +83,6 @@ const UpdateProfile = ( ) => {
       });
     }
   }, [dispatch, error, alert, navigate, user, isUpdated]);
-
- 
 
   return (
     <Fragment>
@@ -126,6 +131,30 @@ const UpdateProfile = ( ) => {
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+
+                <div className="updateProfileEmail">
+                  <MailOutlineIcon />
+                  <input
+                    type="address"
+                    placeholder="Address"
+                    required
+                    name="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </div>
+
+                <div className="updateProfileEmail">
+                  <MailOutlineIcon />
+                  <input
+                    type="shopname"
+                    placeholder="Shopname"
+                    required
+                    name="shopname"
+                    value={shopname}
+                    onChange={(e) => setShopName(e.target.value)}
                   />
                 </div>
 

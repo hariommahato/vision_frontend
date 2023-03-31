@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { useAlert } from "react-alert";
 import Loader from "../../layout/Loader/Loader";
+import { Rating } from "@material-ui/lab";
 
 const FeaturedProduct = () => {
   const alert = useAlert();
@@ -16,13 +17,14 @@ const FeaturedProduct = () => {
       alert.error(error);
     }
   }, [alert, error]);
+
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 5,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     slidesToScroll: 4,
     cssEase: "linear",
     responsive: [
@@ -52,6 +54,7 @@ const FeaturedProduct = () => {
       },
     ],
   };
+
   return (
     <>
       {loading ? (
@@ -63,29 +66,67 @@ const FeaturedProduct = () => {
               {products &&
                 products.map((product) => (
                   <div key={product._id}>
+                    
                     <Link
                       to={`/product/${product._id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      <Card
-                        style={{ height: "15rem", width: "14rem" }}
-                        elevation={3}
-                      >
+                      <Card style={{ minHeight: "18rem", width: "14rem" }}>
+                    
                         <img
                           src={product.images[0].url}
                           style={{
-                            height: "10rem",
+                            height: "14rem",
                             width: "100%",
-                            padding: "0.5rem",
+                            padding: "2rem",
                           }}
                           alt="poduct"
                         />
+
                         <Typography
-                          style={{ margin: "0.3rem 0.3rem" }}
+                          style={{
+                            margin: "0.5rem 0.5rem",
+                            padding: "3px",
+                            fontSize: "0.9vmax",
+                          }}
                         >{` ${product.name}`}</Typography>
-                        <Typography
-                          style={{ margin: "0.3rem 0.3rem", color: "tomato" }}
-                        >{`Rs ${product.price}`}</Typography>
+
+                        <div
+                          style={{
+                            margin: "0.5rem 0.5rem",
+                            padding: "3px",
+                          }}
+                        >
+                          <Rating
+                            size="small"
+                            value={product.ratings}
+                            readOnly={true}
+                            precision={0.5}
+                          />
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            padding: "3px",
+                          }}
+                        >
+                          {" "}
+                          <Typography
+                            style={{
+                              margin: "0.5rem 0.5rem",
+                              fontSize: "0.9vmax",
+                            }}
+                          >{`Rs ${product.price}`}</Typography>
+                          <Typography
+                            style={{
+                              margin: "0.5rem 0.5rem",
+                              fontSize: "0.9vmax",
+                            }}
+                          >
+                            {` ${product.sold}`}Sold
+                          </Typography>
+                        </div>
                       </Card>
                     </Link>
                   </div>

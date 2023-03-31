@@ -1,0 +1,35 @@
+.featureContainer{
+    width: 90%;
+    margin: auto;
+    /* margin-top: 2rem; */
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1vmax;
+}
+.containerFeatureCard{
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+}
+.detailMainContainerImage{
+    height: 100px;
+    width: 100px;
+
+}
+.contentImage{
+    width: 60px;
+    height: 50px;
+}
+.detailMainContainer{
+    display: flex;
+    gap: 0.2vmax;
+    align-items: center;
+
+}
+.contentContainerMain{
+    display: flex;
+    /* flex-direction: column; */
+}

@@ -8,18 +8,18 @@ import {
   getHotDealProduct,
 } from "../../actions/productActions";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import Carousel from "../Carousel/Carousel";
 import FeaturedProduct from "../Carousel/FeaturedProduct/FeaturedProduct";
 import { Typography } from "@material-ui/core";
 import HotDealProduct from "../Carousel/HotDealProduct/HotDealProduct";
-import TopProduct from "../Carousel/TopProduct/TopProduct";
+import HomeFeatureSection from "../HomeFeatureSection";
+
 
 const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { loading, error, products } = useSelector((state) => state.products);
+  const {  error,  } = useSelector((state) => state.products);
 
   useEffect(() => {
     if (error) {
@@ -36,17 +36,14 @@ const Home = () => {
     
         <MetaData title={"Home"}/>
           <Carousel />
-          <div style={{ width: "80%", margin: "auto", marginTop: "4rem" }}>
-            <Typography variant="h6">Top Product</Typography>
-            <TopProduct />
-          </div>
+          <HomeFeatureSection/>
 
-          <div style={{ width: "80%", margin: "auto", marginTop: "4rem" }}>
-            <Typography variant="h6">Featured Product</Typography>
+          <div style={{ width: "85%", margin: "auto", marginTop: "2rem" }}>
+            <Typography variant="h6" style={{fontSize:"1vmax"}}>Featured Product</Typography>
             <FeaturedProduct />
           </div>
-          <div style={{ width: "80%", margin: "auto", marginTop: "4rem" }}>
-            <Typography variant="h6">Featured Product</Typography>
+          <div style={{ width: "85%", margin: "auto", marginTop: "2rem"}}>
+            <Typography variant="h6" style={{fontSize:"1vmax"}}>HotDeal Product</Typography>
             <HotDealProduct />
           </div>
         </Fragment>

@@ -21,13 +21,13 @@ import {
   CAROUSEL_DETAILS_SUCCESS,
   CLEAR_CAROUSEL_ERRORS,
 } from "../constants/carousel";
-const url='https://multivendor-api.onrender.com'
+// const url='https://multivendor-api.onrender.com'
 
 export const getCarousel = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_CAROUSEL_REQUEST });
 
-    const { data } = await axios.get(`${url}/api/v1/carousel`);
+    const { data } = await axios.get(`/api/v1/carousel`);
 
     dispatch({
       type: ALL_CAROUSEL_SUCCESS,
@@ -49,7 +49,7 @@ export const createCarousel = (carouselData) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
 
-    const { data } = await axios.post(`${url}/api/v1/carousel/new`, carouselData, config);
+    const { data } = await axios.post(`/api/v1/carousel/new`, carouselData, config);
     
     dispatch({
       type: NEW_CAROUSEL_SUCCESS,
@@ -71,7 +71,7 @@ export const updateCarousel = (id, carouseldata) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
 
-    const { data } = await axios.put(`${url}/api/v1/carousel/${id}`, carouseldata, config);
+    const { data } = await axios.put(`/api/v1/carousel/${id}`, carouseldata, config);
 
     dispatch({
       type: UPDATE_CAROUSEL_SUCCESS,
@@ -89,7 +89,7 @@ export const deletCarousel = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_CAROUSEL_REQUEST });
 
-    const { data } = await axios.delete(`${url}/api/v1/carousel/${id}`);
+    const { data } = await axios.delete(`/api/v1/carousel/${id}`);
 
     dispatch({
       type: DELETE_CAROUSEL_SUCCESS,
@@ -107,7 +107,7 @@ export const getCarouselDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: CAROUSEL_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`${url}/api/v1/carousel/${id}`);
+    const { data } = await axios.get(`/api/v1/carousel/${id}`);
 
     dispatch({
       type: CAROUSEL_DETAILS_SUCCESS,

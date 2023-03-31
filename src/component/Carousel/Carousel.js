@@ -9,7 +9,7 @@ const Carousel = () => {
   const dispatch = useDispatch();
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     arrows: true,
@@ -22,16 +22,15 @@ const Carousel = () => {
   useEffect(() => {
     dispatch(getCarousel());
   }, [dispatch]);
-  const { error, carousel } = useSelector((state) => state.carousels);
-  const carouselData = carousel?.images;
+  const {  carousel } = useSelector((state) => state.carousels);
   return (
-    <div style={{ width: "80%", margin: "auto" }}>
-      {console.log(carousel)}
+    <div style={{ width: "100%", margin: "auto",marginTop:"0.3rem"}}>
+  
       <Slider
         {...settings}
         style={{
           width: "100%",
-          height: "500px",
+          height: "600px",
         }}
       >
         {carousel &&

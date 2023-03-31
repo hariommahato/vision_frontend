@@ -104,6 +104,7 @@ const ProductDetails = () => {
       ) : (
         <Fragment>
           <MetaData title={`${product.name} -- ECOMMERCE`} />
+          {console.log(product)}
           <div className="ProductDetails">
             <div>
               <Carousel>
@@ -122,9 +123,11 @@ const ProductDetails = () => {
             <div>
               <div className="detailsBlock-1">
                 <h2>{product.name}</h2>
+                <span style={{color:"gray"}}>Sold:{product?.sold}</span>
                 <p>Product # {product._id}</p>
               </div>
               <div className="detailsBlock-2">
+             
                 <Rating {...options} />
                 <span className="detailsBlock-2-span">
                   {" "}

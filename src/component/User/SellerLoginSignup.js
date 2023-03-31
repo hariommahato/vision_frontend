@@ -4,14 +4,16 @@ import Loader from "../layout/Loader/Loader";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import { Checkbox, FormControlLabel } from "@material-ui/core";
 import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userActions";
 import { useAlert } from "react-alert";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { AiFillBackward } from "react-icons/ai";
+import BusinessIcon from '@material-ui/icons/Business'
+import HomeIcon from '@material-ui/icons/Home'
 
-const LoginSignUp = () => {
+const SellerLoginSignup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useAlert();
@@ -30,11 +32,14 @@ const LoginSignUp = () => {
     email: "",
     phone: "",
     password: "",
+    address: "",
+    shopname: "",
   });
 
-  const { name, email, password, phone } = user;
+  const { name, email, password, phone ,shopname,address} = user;
 
   const [avatar, setAvatar] = useState("/logo192.png");
+  const [isseller,setIsseller]=useState(false)
   const [avatarPreview, setAvatarPreview] = useState("/logo192.png");
 
   const loginSubmit = (e) => {
@@ -50,6 +55,11 @@ const LoginSignUp = () => {
     myForm.set("phone", phone);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
+    myForm.set('address',address);
+    myForm.set('shopname',shopname);
+    myForm.set('isseller',isseller)
+
+
     dispatch(register(myForm));
   };
 
@@ -109,7 +119,6 @@ const LoginSignUp = () => {
               <div>
                 <div className="login_signUp_toggle">
                   <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-
                   <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
                 </div>
                 <button ref={switcherTab}></button>
@@ -137,7 +146,6 @@ const LoginSignUp = () => {
                 </div>
                 <Link to="/password/forgot">Forget Password ?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
-
               </form>
               <form
                 className="signUpForm"
@@ -189,6 +197,49 @@ const LoginSignUp = () => {
                     onChange={registerDataChange}
                   />
                 </div>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={isseller}
+                        onChange={() => {
+                          setIsseller(!isseller);
+                        }}
+                      />
+                    }
+                    label="Do you want to sell with Easylink?"
+                  />
+                </div>
+                {isseller ?(
+                  <>
+                  <div className="signUpEmail">
+                  <HomeIcon />
+                  <input
+                    type="text"
+                    placeholder="Address/CompanyAddress"
+                    required
+                    name="address"
+                    value={address}
+                    onChange={registerDataChange}
+                    className="my-1"
+                  />
+                </div>
+                <div className="signUpPassword">
+                  <BusinessIcon />
+                  <input
+                    type="text"
+                    placeholder="shopname"
+                    required
+                    name="shopname"
+                    value={shopname}
+                    onChange={registerDataChange}
+                    className="my-1"
+                  />
+                </div>
+
+                  </>
+                ):<></>}
+                {console.log(isseller)}
 
                 <div id="registerImage">
                   <img src={avatarPreview} alt="Avatar Preview" />
@@ -197,6 +248,7 @@ const LoginSignUp = () => {
                     name="avatar"
                     accept="image/*"
                     onChange={registerDataChange}
+                    className="my-1"
                   />
                 </div>
                 <input type="submit" value="Register" className="signUpBtn" />
@@ -209,4 +261,4 @@ const LoginSignUp = () => {
   );
 };
 
-export default LoginSignUp;
+export default SellerLoginSignup;

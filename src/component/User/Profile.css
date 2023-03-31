@@ -1,15 +1,12 @@
 .profileContainer {
     display: flex;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 8%;
-    left: 0%;
+    /* height: 100vh; */
+    /* width: 100vw; */
+    /* position: fixed; */
+    /* top: 0; */
     max-width: 100%;
     background-color: white;
-   
   }
-  
   .profileContainer > div {
     display: flex;
     height: 100vh;
@@ -40,7 +37,7 @@
   
   .profileContainer > div:first-child > a {
     border: none;
-    background-color: tomato;
+    background-color:  #19bc9b;;
     font: 400 1vmax "Roboto";
     color: white;
     text-decoration: none;
@@ -81,7 +78,7 @@
   
   .profileContainer > div:last-child > div:last-child > a {
     border: none;
-    background-color: rgb(68, 68, 68);
+    background-color: rgb(0, 0, 0);
     font: 400 1vmax "Roboto";
     color: white;
     text-decoration: none;
@@ -92,7 +89,7 @@
   }
   
   .profileContainer > div:last-child > div:last-child > a:hover {
-    background-color: rgb(31, 31, 31);
+    background-color: rgb(56, 56, 56);
   }
   
   @media screen and (max-width: 600px) {

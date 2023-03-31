@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Header from "./component/layout/Header/Header.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
@@ -12,7 +12,6 @@ import Search from "./component/Product/Search";
 import LoginSignUp from "./component/User/LoginSignUp";
 import store from "./strore";
 import { loadUser } from "./actions/userActions";
-import UserOptions from "./component/layout/Header/UserOptions";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
 import ProtectedRoute from "./component/Route/ProtectedRoute";
@@ -55,14 +54,17 @@ import UserUpdateProduct from "./component/User/UserUpdateProduct";
 import CarouseList from "./component/Admin/CarouselList";
 import NewCarousel from "./component/Admin/NewCarousel";
 import UpdateCarousel from "./component/Admin/UpdateCarousel";
-
+import SellerLoginSignup from "./component/User/SellerLoginSignup";
+import SecondHeader from "./component/layout/Header/SecondHeader";
+import AdminRoute from "./component/Route/AdminRoute";
 function App() {
-  const { isAuthenticated, user } = useSelector((state) => state.user);
   const [stripeApiKey, setStripeApiKey] = useState("");
+
+  
+  const { loading, isAuthenticated, user } = useSelector((state) => state.user);
 
   async function getStripeApiKey() {
     const { data } = await axios.get("/api/v1/stripeapikey");
-
     setStripeApiKey(data.stripeApiKey);
   }
 
@@ -77,12 +79,10 @@ function App() {
 
     getStripeApiKey();
   }, []);
-  // window.addEventListener("contextmenu", (e) => e.preventDefault());
-
   return (
     <Router>
       <Header />
-      {isAuthenticated && <UserOptions user={user} />}
+      <SecondHeader />
       <Routes>
         {stripeApiKey && (
           <Route
@@ -100,6 +100,7 @@ function App() {
         <Route exact path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />
         <Route exact path="/login" element={<LoginSignUp />} />
+        <Route exact path="/sellerlogin" element={<SellerLoginSignup />} />
         <Route exact path="/search" element={<Search />} />
         {/* <Route exact path="/contact" element={Contact} /> */}
         {/* <Route exact path="/about" element={About} /> */}
@@ -151,12 +152,13 @@ function App() {
           path="/order/:id"
           element={<ProtectedRoute component={OrderDetails}></ProtectedRoute>}
         />
+         
         <Route
           exact
           path="/admin/dashboard"
           element={
             <ProtectedRoute
-              isAdmin={true}
+              adminRoute={true}
               component={Dashboard}
             ></ProtectedRoute>
           }

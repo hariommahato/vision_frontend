@@ -17,7 +17,7 @@ const MyOrders = () => {
   const { user } = useSelector((state) => state.user);
 
   const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
+    { field: "id", headerName: "Order ID", minWidth: 100, flex: 1 },
 
     {
       field: "status",
@@ -34,7 +34,7 @@ const MyOrders = () => {
       field: "itemsQty",
       headerName: "Items Qty",
       type: "number",
-      minWidth: 150,
+      minWidth: 200,
       flex: 0.3,
     },
 
@@ -101,6 +101,7 @@ const MyOrders = () => {
           />
 
           <Typography id="myOrdersHeading">{user?.name}'s Orders</Typography>
+         
         </div>
       )}
     </Fragment>

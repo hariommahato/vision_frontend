@@ -59,7 +59,9 @@ const TopProduct = () => {
         <Loader />
       ) : (
         <>
-          <div>
+          <div style={{
+            marginTop:"1rem"
+          }}>
             <Slider {...settings} style={{ height: "auto" }}>
               {products &&
                 products.map((product) => (
@@ -70,7 +72,7 @@ const TopProduct = () => {
                     >
                       <Card
                         style={{ height: "15rem", width: "14rem" }}
-                        elevation={3}
+                        
                       >
                         <img
                           src={product?.images[0]?.url}

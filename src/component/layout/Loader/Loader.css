@@ -10,7 +10,7 @@
   .loading > div {
     width: 10vmax;
     height: 10vmax;
-    border-bottom: 5px solid red;
+    border-bottom: 5px solid #19bc9b;
   
     border-radius: 50%;
   

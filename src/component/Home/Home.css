@@ -4,7 +4,7 @@
   text-align: center;
   font-family: Roboto;
   font-size: 1.4vmax;
-  border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+  /* border-bottom: 1px solid rgba(21, 21, 21, 0.5); */
   width: 20vmax;
   padding: 1vmax;
   margin: 5vmax auto;
@@ -14,22 +14,23 @@
 .container {
   display: flex;
   margin: 2vmax auto;
-  width: 80vw;
+  width: 100vw;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
 }
 
 .productCard {
-  width: 14vmax;
+  width: 15vmax;
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: rgb(48, 48, 48);
-  margin: 2vmax;
+  margin: 1vmax;
   transition: all 0.5s;
-  padding-bottom: 0.5vmax;
+  padding: 1rem;
   box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+  border-radius: 2%;
 }
 
 .productCard > img {
@@ -37,7 +38,7 @@
   height: 10rem;
   background-size: cover;
   background-position: center;
-  padding: 0.5rem;
+  padding: 0.vmax;
 }
 
 .productCard > div {
@@ -61,16 +62,16 @@
 
 .productCard > span {
   margin: 0.5vmax;
-  color: tomato;
+  color: black;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 1vmax;
 }
 
 .productCard:hover {
-  box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+  /* box-shadow: 0 0 5px rgba(15, 15, 15, 0.26); */
   transform: translateY(-1vmax);
   text-decoration: none;
-  color: red;
+  color:black;
 }
 
 @media screen and (max-width: 600px) {
