@@ -18,7 +18,7 @@ import {
   CATEGORY_DETAILS_SUCCESS,
   CLEAR_ERRORS_CATO
 } from "../constants/categoryConstants";
-const url="https://mern-ecommerce-backend-xo0h.onrender.com"
+const url="https://visiondreamery-backend-ecommerce.onrender.com"
 // Get All CAtegory
 export const getAllCategory = () => async (dispatch) => {
   try {

@@ -39,7 +39,7 @@ import {
   HOTDEAL_PRODUCT_REQUEST,
   HOTDEAL_PRODUCT_SUCCESS,
 } from "../constants/productConstants";
-const url="https://mern-ecommerce-backend-xo0h.onrender.com"
+const url="https://visiondreamery-backend-ecommerce.onrender.com"
 // Get All Products
 export const getProduct =
   (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) =>

@@ -4,7 +4,7 @@ import {
     SAVE_SHIPPING_INFO,
   } from "../constants/cartConstants";
   import axios from "axios";
-  const url="https://mern-ecommerce-backend-xo0h.onrender.com"
+  const url="https://visiondreamery-backend-ecommerce.onrender.com"
   // Add to Cart
   export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
     const { data } = await axios.get(`${url}/api/v1/product/${id}`);

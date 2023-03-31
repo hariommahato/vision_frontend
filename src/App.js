@@ -60,7 +60,6 @@ import AdminRoute from "./component/Route/AdminRoute";
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
 
-  
   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
 
   async function getStripeApiKey() {
@@ -152,7 +151,6 @@ function App() {
           path="/order/:id"
           element={<ProtectedRoute component={OrderDetails}></ProtectedRoute>}
         />
-         
         <Route
           exact
           path="/admin/dashboard"

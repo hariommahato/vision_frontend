@@ -21,7 +21,7 @@ import {
   CAROUSEL_DETAILS_SUCCESS,
   CLEAR_CAROUSEL_ERRORS,
 } from "../constants/carousel";
-const url="https://mern-ecommerce-backend-xo0h.onrender.com"
+const url="https://visiondreamery-backend-ecommerce.onrender.com"
 
 export const getCarousel = () => async (dispatch) => {
   try {

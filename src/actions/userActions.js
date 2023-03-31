@@ -37,7 +37,7 @@ import {
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 import axios from "axios"
-const url="https://mern-ecommerce-backend-xo0h.onrender.com"
+const url="https://visiondreamery-backend-ecommerce.onrender.com"
 // Login
 export const login = (email, password) => async (dispatch) => {
   try {
